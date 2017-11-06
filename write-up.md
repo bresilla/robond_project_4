@@ -78,4 +78,6 @@ After an intensive ~5hr of training, i reached an acceptable accuracy of more th
 
 The whole model is made with Keras and Tensorflow as backend.
 
-As a huge fan of PyTorch, while learning PyTorch, i want to use this model with it. When the model is in PyTorch, i can use ONNX to easily translate it in Caffe2 and/or Cognetive toolkit too :)
+As a huge fan of PyTorch, while learning PyTorch, i want to use this model with it. I like more the aproach of Pytorch with Dynamic-grapth rather than Static one that Tensorfow uses.
+
+And when the model is in PyTorch, i can use ONNX to easily translate it in Caffe2 and/or Cognetive toolkit too :)
