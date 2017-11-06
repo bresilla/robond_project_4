@@ -11,7 +11,7 @@ In this project, we trained a deep neural network to identify and track a target
 
 
 ## Data collection
-As
+As with all machine learning projects, the more data you have the better your model will perform. So, the first step, in addition to the data provided, we had to add more data. In this manner, I added four more runs, each with more or less 500 pictures. As was sugested in the class, we had to collect the dat through the simulator. The 3rd run is shown in the pictures below, where the hero walks in a fully-conneted octagonal shape, and the crowd would spawn to distract, while the drone goes above taking pictures in follow mode and patrol mode.
 
 Patrol points, hero walking points and crowd spaws:
 ![alt text][image_1]
@@ -21,7 +21,7 @@ Patrol mode:
 
 Follow mode:
 ![alt text][image_4]
- 
+
 
 ## Network architecture
 
@@ -32,6 +32,15 @@ In this project we had to implement a Fully Convolutional Network. FCNs are bein
 ## Training
 
 Lorem Ipsum
+
+```py
+learning_rate = 0.025
+batch_size = 16
+num_epochs = 50
+steps_per_epoch = 250
+validation_steps = 100
+workers = 8
+```
 
 ## Results
 
