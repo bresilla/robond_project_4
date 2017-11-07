@@ -8,6 +8,7 @@ In this project, we trained a deep neural network to identify and track a target
 [image_3]: ./docs/misc/screen_3.png
 [image_4]: ./docs/misc/screen_4.png
 [image_5]: ./docs/misc/screen_5.png
+[image_6]: ./docs/misc/drawing.png
 
 
 ## Data collection
@@ -23,7 +24,7 @@ Follow mode:
 ![alt text][image_4]
 
 
-## Network architecture
+## CNNs and FCNs
 
 Semantic Segmentation of an image is to assign each pixel in the input image a semantic class in order to get a pixel-wise dense classification. While semantic segmentation / scene parsing has been a part of the computer vision community since 2007, but much like other areas in computer vision, major breakthrough came when fully convolutional neural networks were first used by 2014 Long et. al. to perform end-to-end segmentation of natural images.
 
@@ -31,9 +32,13 @@ In this project we had to implement a Fully Convolutional Network. FCNs are bein
 
 FCNs are vey useful when in addition to clasification (what is the image showing), we want the localisation too (where in the picture is something of interest).
 
-During my initial test, i want with 2 encoder and 2 decoder layers connected via 1X1 convolution layer. Later on, to improve the accuaracy i decided to go with 3 encoder and 3 decoder layers. This seemts that it increased accuracy, but, still i would think for the depth versus performance when doing thise kind of architectures.
+## Network architecture
+
+During my initial test, i went with 2 encoder and 2 decoder layers connected via 1X1 convolution layer. Later on, to improve the accuaracy i decided to go with 3 encoder and 3 decoder layers. This seemts that it increased accuracy, but, still i would think for the depth versus performance when doing thise kind of architectures.
 
 Here is the network I used:
+
+![alt text][image_6]
 ```python
 def fcn_model(inputs, num_classes):
     encode_layer_1 = encoder_block(inputs, 32, 2)
@@ -50,7 +55,7 @@ def fcn_model(inputs, num_classes):
 
 Training is the core of any machine learning algorithm. And its very compute intensisive. And because it needa a lot of concurrency and paralelism to compute different and huge matrices, it is suitable to use GPU rather than CPU. 
 
-We are given a 50$ cuppon for AWS instances, but i decided to save that so i can use for more intensive task down the rod, and use my own computers GPU.
+We are given a 50$ cuppon for AWS instances, but i decided to save that so i can use for more intensive task down the road, and use my own computer's GPU.
 
 I own a Dell XPS 9550, with Nvidia GTX 960M with compute capability 4.0. I already have GPU versions of many deep learning libraries including: TensorFlow, PyTorch (my favourite), Caffe2 and Cognetive toolkit.
 
