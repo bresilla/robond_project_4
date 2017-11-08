@@ -9,6 +9,8 @@ In this project, we trained a deep neural network to identify and track a target
 [image_4]: ./docs/misc/screen_4.png
 [image_5]: ./docs/misc/screen_5.png
 [image_6]: ./docs/misc/drawing.png
+[image_7]: ./docs/misc/train.png
+
 
 
 ## Data collection
@@ -41,10 +43,14 @@ Fully conneted layer is a simple NN layer. It flatens all the inputs of last lay
 
 FCNs are vey useful when in addition to clasification (what is the image showing), we want the localisation too (where in the picture is something of interest). Semantic Segmentation of an image is to assign each pixel in the input image a semantic class in order to get a pixel-wise dense classification. While semantic segmentation / scene parsing has been a part of the computer vision community since 2007, but much like other areas in computer vision, major breakthrough came when fully convolutional neural networks were first used to perform end-to-end segmentation of natural images. FCNs are being used everywhere, for segmentation of natural images, for multi-modal medical image analysis and multispectral satellite image segmentation, self-driving cars, robotics and pretty much everywhere else where computer vision comes to play.
 
-The difference form CNNs is that FCNs is that insted of image-level clasification, it does a pixel-level classification by firstly doing into network by different Convolution/Linearty/Pooling layers (the encoder block), to reach the 1x1 convolution then again going in the oposite again by  Convolution/Linearty/Pooling layers (the decoder block). So main operations in FCNs are:
+The difference form CNNs is that FCNs is that insted of image-level clasification, it does a pixel-level classification by firstly doing into network by different Convolution/Linearty/Pooling layers (the encoder block), to reach the 1x1 convolution then again going in the oposite again - transpose convolution - by  Convolution/Linearty/Pooling layers (the decoder block). Those block esencially use Depthwise Separable convolutions. In a depthwise convolution, the kernels of each filter are applied separately to each channel and the outputs are concatenated. Then, the pointwise convolution is applied. This greatly reduces the number of parameters that are required while still keeping efficiency and not destroying cross-channel features. So main operations in FCNs are:
 
-#### 1. Encoding
-
+#### 1. Encoder block
+Goal of encoder block is to extract features from the image
+#### 2. 1x1 convolution
+This is the most important and distinguished feature of FCNs compared to CNNs, as in 1x1 convolution this substitutes the fully conected layer, but here instead of beinf a 2D Tensor, is 4D, thus saving spatial information.
+#### 3. Decoder block
+While the decoder upscales the input of encoder (technically 1x1 convolution layer) to reach same size as original image by using upsampling. Thus segmentig pixelwise elements on the image.
 
 
 ## Network architecture
@@ -75,6 +81,9 @@ We are given a 50$ cuppon for AWS instances, but i decided to save that so i can
 I own a Dell XPS 9550, with Nvidia GTX 960M with compute capability 4.0. I already have GPU versions of many deep learning libraries including: TensorFlow, PyTorch (my favourite), Caffe2 and Cognetive toolkit.
 
 Since my GPU has only 2GB of memory, i had to decrease the batch.size to 16 so, during the training does not run out of memory. And with the parameters that were given (i did not change in the begning), it took less than 1 hour to finish.
+
+![alt text][image_7]
+
 ## Results
 
 First results were not so good, reaching an accuraacy of 35%. This because, in first run, i bearly changed anything, except the model layers and set learning rate very low.
@@ -100,9 +109,11 @@ Again, as all machine-learning agorithms, for the network to have better accurac
 
 Another would be, using different regularisation techniques, momentum, L2 regularisaition (weight decay) and/or even drop out - inverted dropout to prevent overfiting 
 
-We can certainly go deeper with layers, but we will face vanishing weights problem.
+We can certainly go deeper with layers, but we will face vanishing weights problem at some point.
 
 Another improvement could be, using differnt hero model, so the model is not bound to just a specific person. This might be tricky, as the drone has to follow just a specific person, and when the distractor spawn interfere, the model might get confused. But with enough data, and a model that checks not just a specific picture but considers previous frames (in a continious manner), would certainly make this possible.
+
+More epochs prpbpbly would have been better, as it looks from the graph of last epoch, the model was still to stabilise.
 
 ## Future work
 
