@@ -26,11 +26,26 @@ Follow mode:
 
 ## CNNs and FCNs
 
-Semantic Segmentation of an image is to assign each pixel in the input image a semantic class in order to get a pixel-wise dense classification. While semantic segmentation / scene parsing has been a part of the computer vision community since 2007, but much like other areas in computer vision, major breakthrough came when fully convolutional neural networks were first used by 2014 Long et. al. to perform end-to-end segmentation of natural images.
+CNNs are a specific type of neural networks that take into the consideration the spatial data. Mostly used in computer vision, but not neccesary just there, as CNNs are found in spech recognition, sentence generation, translation and so on. There re four main operations in CNNs:
 
-In this project we had to implement a Fully Convolutional Network. FCNs are being used for semantic segmentation of natural images, for multi-modal medical image analysis and multispectral satellite image segmentation, self-driving cars, robotics and pretty much everywhere else where computer vision comes to play.
+#### 1. Convolution
+Convolution preserves the spatial relationship between pixels by learning image features using small squares of input data
 
-FCNs are vey useful when in addition to clasification (what is the image showing), we want the localisation too (where in the picture is something of interest).
+#### 2. Non Linearity (ReLU)
+ReLU is an element wise operation and replaces all negative pixel values in the feature map by zero. The aim of ReLU is to introduce non-linearity in our CNN.
+#### 3. Pooling or Sampling
+Pooling reduces the dimensiaolity of each feature map, but still retaining most important information.
+#### 4. Fully Connected Layer (Classification)
+Fully conneted layer is a simple NN layer. It flatens all the inputs of last layer and
+
+
+FCNs are vey useful when in addition to clasification (what is the image showing), we want the localisation too (where in the picture is something of interest). Semantic Segmentation of an image is to assign each pixel in the input image a semantic class in order to get a pixel-wise dense classification. While semantic segmentation / scene parsing has been a part of the computer vision community since 2007, but much like other areas in computer vision, major breakthrough came when fully convolutional neural networks were first used to perform end-to-end segmentation of natural images. FCNs are being used everywhere, for segmentation of natural images, for multi-modal medical image analysis and multispectral satellite image segmentation, self-driving cars, robotics and pretty much everywhere else where computer vision comes to play.
+
+The difference form CNNs is that FCNs is that insted of image-level clasification, it does a pixel-level classification by firstly doing into network by different Convolution/Linearty/Pooling layers (the encoder block), to reach the 1x1 convolution then again going in the oposite again by  Convolution/Linearty/Pooling layers (the decoder block). So main operations in FCNs are:
+
+#### 1. Encoding
+
+
 
 ## Network architecture
 
@@ -79,10 +94,19 @@ workers = 8
 
 After an intensive ~5hr of training, i reached an acceptable accuracy of more than 41%
 
-## Future improvement
+## Improvement
 
-The whole model is made with Keras and Tensorflow as backend.
+Again, as all machine-learning agorithms, for the network to have better accuracy, would be better to use more data. Them more date the better the model.
 
-As a huge fan of PyTorch, while learning PyTorch, i want to use this model with it. I like more the aproach of Pytorch with Dynamic-grapth rather than Static one that Tensorfow uses.
+Another would be, using different regularisation techniques, momentum, L2 regularisaition (weight decay) and/or even drop out - inverted dropout to prevent overfiting 
 
-And when the model is in PyTorch, i can use ONNX to easily translate it in Caffe2 and/or Cognetive toolkit too :)
+We can certainly go deeper with layers, but we will face vanishing weights problem.
+
+Another improvement could be, using differnt hero model, so the model is not bound to just a specific person. This might be tricky, as the drone has to follow just a specific person, and when the distractor spawn interfere, the model might get confused. But with enough data, and a model that checks not just a specific picture but considers previous frames (in a continious manner), would certainly make this possible.
+
+## Future work
+
+The whole model is made with Keras and Tensorflow as backend. As a huge fan of PyTorch, while learning PyTorch, i want to use this model with it.
+
+And when the model is in PyTorch, i can use ONNX to easily translate it in Caffe2 and/or Cognetive toolkit too.
+I like the idea of ONNX, as, sometimes some models just work better in another framework. AS of now, ONNX, i think supports only PyTorch, Caffe2 and Cognetive, but i hope a tool like that will be soon supported from tensorflow.
