@@ -107,7 +107,8 @@ workers = 8
 ## Final Results
 
 After an intensive ~5hr of training, i reached an acceptable accuracy of more than 41%
-Its important to note again that, the model is trained to follow just a specific hero, this model would not work good to follow another hero, or object, or other animal, or other thing. For that it needs to be trained, extract feature, and then reconise it and follow.
+
+*Its important to note again that, the model is trained to follow just a specific hero, this model would not work good to follow another hero, or object, or other animal, or other thing. For that it needs to be trained, extract feature, and then reconise it and follow.*
 
 ## Improvement
 
