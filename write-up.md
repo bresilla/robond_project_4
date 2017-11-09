@@ -99,9 +99,15 @@ steps_per_epoch = 250
 validation_steps = 100
 workers = 8
 ```
+- learning rate: is the tweaking value on how much weights can change after one epoch
+- batch size: is the number of simultaneus images shown to model before weights are updated (highly dependant on memory of procesing hardware, be that GPU, CPU, TPU, APU or whatever is there nowadays for deep-learning)
+- epochs: is the number of hoa many cycles the model goes in the same data
+- workers: is number of threds (again depends on processing hardware)
+
 ## Final Results
 
 After an intensive ~5hr of training, i reached an acceptable accuracy of more than 41%
+Its important to note again that, the model is trained to follow just a specific hero, this model would not work good to follow another hero, or object, or other animal, or other thing. For that it needs to be trained, extract feature, and then reconise it and follow.
 
 ## Improvement
 
